@@ -14,9 +14,13 @@ Los resultados se recalculan **en vivo** conforme escribes, no hay botón de cal
 
 | Sección | Campos |
 |---|---|
-| Impresión (por placa) | horas y minutos, gramos de filamento, tipo de filamento, purga multicolor, piezas por placa |
+| Impresión (por placa) | horas y minutos, gramos de filamento, tipo de filamento, purga multicolor, piezas por placa, tamaño en cm |
 | Extras (por pieza) | imanes $2, argollas $3, vela LED $25, pintura a mano $150/h, empaque $20 |
-| Ajustes | energía (kW × $/kWh), depreciación (precio de máquina ÷ vida útil), margen, umbrales del semáforo |
+| Tu precio | por margen, precio manual, o precio de lista por tamaño |
+| Ajustes | energía (kW × $/kWh), depreciación (precio de máquina ÷ vida útil), margen, precios por tamaño, umbrales del semáforo |
+
+La app trae un manual desplegable (**📖 Qué hace cada campo**) con la explicación breve de
+cada parámetro.
 
 Filamentos precargados: PLA $420/kg · PLA Silk $480 · PETG $500 · TPU $650 · Glow in the dark $600,
 más la opción **Otro** para capturar el precio por kilo a mano.
@@ -36,8 +40,10 @@ depreciación = horas × (precio de la máquina ÷ vida útil en horas)
 extras       = (imanes + argollas + vela + empaque) × piezas
 mano de obra = horas de pintura × $150 × piezas
 
-precio sugerido = costo × (1 + margen)      ← margen sobre el costo (predeterminado)
-precio sugerido = costo ÷ (1 − margen)      ← margen sobre el precio de venta
+precio = costo × (1 + margen)      ← margen sobre el costo (predeterminado)
+precio = costo ÷ (1 − margen)      ← margen sobre el precio de venta
+precio = el que tú escribes        ← modo "Yo lo pongo"
+precio = tu lista según tamaño     ← modo "Por tamaño"
 utilidad por pieza = precio − costo pieza
 utilidad por hora de impresora = utilidad por pieza × piezas ÷ horas de impresión
 ```
@@ -54,6 +60,22 @@ Los dos umbrales se editan en **Ajustes**.
 La pintura a mano no descuenta horas de impresora: la utilidad por hora siempre se divide
 entre el tiempo que la máquina estuvo trabajando.
 
+## Los tres modos de precio
+
+- **Por margen** — el precio sale del costo. Sirve para conocer tu piso, no tu precio de venta.
+- **Yo lo pongo** — escribes el precio real al que vendes y la calculadora saca el margen y la
+  utilidad por hora hacia atrás. **Es el modo para decidir si vale la pena imprimir algo.**
+- **Por tamaño** — usa tu lista de precios según el alto de la pieza.
+
+En modo *Por margen* la app compara el precio por costo contra tu lista por tamaño y te avisa
+cuando te estás quedando corto.
+
+## Tamaño
+
+El alto en cm **no cambia el costo** (eso ya está en los gramos y las horas): clasifica la pieza
+en Mini (<5 cm), Chica (5–10), Mediana (10–15), Grande (15–25) o XL (>25) para compararla contra
+tu lista de precios de venta. Los precios de lista se editan en Ajustes.
+
 ## Catálogo
 
 El botón **Guardar** archiva el producto con nombre en `localStorage`, junto con todas sus
@@ -63,6 +85,14 @@ al volver a abrirla.
 
 Los datos viven **solo en ese navegador y ese dispositivo**: no se suben a ningún lado, y se
 pierden si borras los datos del sitio.
+
+## Por qué el precio por costo se queda corto
+
+Con margen sobre el costo, la utilidad por hora se reduce a `margen × (costo de la placa ÷ horas)`.
+Una impresión normal quema $8–15 de costo por hora, así que un 70% sobre el costo deja $6–10/hora
+por más que le muevas a las constantes. La utilidad por hora sube en serio con **más piezas por
+placa** y con **precio de mercado**, no bajando costos. Por eso existen los modos *Yo lo pongo* y
+*Por tamaño*: la calculadora deja de proponerte el precio y pasa a calificar el tuyo.
 
 ## Nota sobre el margen
 

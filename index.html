@@ -267,6 +267,51 @@
   #barraUH{color:var(--suave)}
   #barraUH.rojo{color:var(--rojo)}#barraUH.amarillo{color:var(--amarillo)}#barraUH.verde{color:var(--verde)}
 
+  [hidden]{display:none!important}
+
+  /* ---------- Selector de modo de precio ---------- */
+  .segmentos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 14px}
+  .segmentos button{
+    font-family:inherit;font-size:14px;font-weight:750;padding:13px 6px;border-radius:13px;line-height:1.2;
+    border:1.5px solid var(--linea);background:#0a1017;color:var(--suave);cursor:pointer;transition:all .15s;
+  }
+  .segmentos button:active{transform:scale(.97)}
+  .segmentos button.act{background:linear-gradient(135deg,var(--lima),var(--menta));color:#08110a;border-color:transparent;font-weight:850}
+  .ref{
+    display:flex;align-items:center;gap:12px;padding:13px;border-radius:14px;
+    background:#0a1017;border:1.5px solid var(--linea);
+  }
+  .ref .em{font-size:28px}
+  .ref .txt{flex:1 1 auto;min-width:0}
+  .ref .txt b{display:block;font-size:16px}
+  .ref .txt small{display:block;font-size:12.5px;color:var(--suave);font-weight:600}
+  .ref .val{font-size:22px;font-weight:850;color:var(--lima);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .aviso-precio{
+    margin:12px 0 0;padding:12px 13px;border-radius:13px;font-size:14px;line-height:1.5;
+    border:1.5px solid var(--linea);background:#0a1017;color:var(--suave);
+  }
+  .aviso-precio b{color:var(--texto)}
+  .aviso-precio.ojo{border-color:rgba(255,194,51,.5);background:rgba(255,194,51,.08);color:#e8c98a}
+  .aviso-precio.ojo b{color:var(--amarillo)}
+  .aviso-precio.bien{border-color:rgba(182,255,46,.4);background:rgba(182,255,46,.07);color:#c3e08d}
+  .aviso-precio.bien b{color:var(--lima)}
+
+  /* ---------- Precios por tamaño ---------- */
+  .filaTam{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #1d2733}
+  .filaTam:last-of-type{border-bottom:none}
+  .filaTam .nom{flex:1 1 auto;min-width:0;font-size:14.5px;font-weight:700}
+  .filaTam .nom small{display:block;font-size:11.5px;color:var(--suave);font-weight:600}
+  .filaTam input{width:106px;flex:0 0 106px;padding:10px;text-align:right;font-size:15.5px}
+  .filaTam.act .nom{color:var(--lima)}
+
+  /* ---------- Manual ---------- */
+  .man h4{margin:16px 0 8px;font-size:14.5px;font-weight:800;color:var(--lima);letter-spacing:.2px}
+  .man h4:first-child{margin-top:0}
+  .man dl{margin:0}
+  .man dt{font-size:14.5px;font-weight:750;color:var(--texto);margin-top:10px}
+  .man dd{margin:2px 0 0;font-size:13.5px;line-height:1.5;color:var(--suave)}
+  .man dd b{color:var(--texto);font-weight:700}
+
   footer{text-align:center;color:#5d6d7d;font-size:12.5px;padding:6px 16px 10px;line-height:1.6}
 
   @media (max-width:520px){
@@ -325,14 +370,14 @@
       </div>
 
       <div class="bloque">
-        <h3>🛠️ Depreciación de la impresora <span class="res" id="resDeprec">$6.50 / hora</span></h3>
+        <h3>🛠️ Depreciación de la impresora <span class="res" id="resDeprec">$2.00 / hora</span></h3>
         <div class="grid g2">
           <label class="f"><span>Precio de la máquina ($)</span>
-            <input type="number" id="precioMaquina" value="32500" min="0" step="100" inputmode="decimal"></label>
+            <input type="number" id="precioMaquina" value="10000" min="0" step="100" inputmode="decimal"></label>
           <label class="f"><span>Vida útil (horas)</span>
             <input type="number" id="vidaUtil" value="5000" min="1" step="100" inputmode="numeric"></label>
         </div>
-        <p class="ayuda">Precio de la máquina ÷ vida útil en horas = <b id="ayudaDeprec">$6.50</b> por hora de impresión.</p>
+        <p class="ayuda">Precio de la máquina ÷ vida útil en horas = <b id="ayudaDeprec">$2.00</b> por hora de impresión. Es el ahorro para reponerla cuando se acabe.</p>
       </div>
 
       <div class="bloque">
@@ -350,6 +395,12 @@
       </div>
 
       <div class="bloque">
+        <h3>📏 Precios por tamaño <span class="res" id="resTamano"></span></h3>
+        <div id="filasTamano"></div>
+        <p class="ayuda">A cuánto vendes cada tamaño. Cámbialos por <b>tus precios reales de venta</b>: son la referencia contra la que se compara el precio que sale del costo.</p>
+      </div>
+
+      <div class="bloque">
         <h3>🎯 Semáforo de utilidad por hora</h3>
         <div class="grid g2">
           <label class="f"><span>Mínimo ($/h)</span>
@@ -361,6 +412,72 @@
       </div>
 
       <button class="btn fantasma chico" id="btnResetAjustes" type="button">↺ Restablecer ajustes</button>
+    </div>
+  </details>
+
+  <!-- ============ MANUAL ============ -->
+  <details class="ajustes" id="manual">
+    <summary>📖 Qué hace cada campo <span class="flecha">▼</span></summary>
+    <div class="ajustes-body man">
+
+      <h4>🖨️ Datos de impresión — son de la placa completa</h4>
+      <dl>
+        <dt>Horas y minutos</dt>
+        <dd>Lo que tarda la impresión completa, tal cual te lo dice el slicer. De aquí salen la luz, la depreciación y la <b>utilidad por hora</b>.</dd>
+        <dt>Filamento (g)</dt>
+        <dd>Los gramos que gasta toda la placa, también del slicer.</dd>
+        <dt>Tipo de filamento</dt>
+        <dd>Fija el precio por kilo. Con <b>Otro</b> lo capturas a mano.</dd>
+        <dt>Multicolor / purga</dt>
+        <dd>Gramos que se tiran en los cambios de color. Entre más colores, más desperdicio.</dd>
+        <dt>Piezas por placa</dt>
+        <dd>Cuántas figuras salen en una sola impresión. Reparte el costo de la placa y multiplica lo que vendes sin ocupar más horas de máquina: <b>es la palanca más fuerte que tienes</b>.</dd>
+        <dt>Tamaño · alto en cm</dt>
+        <dd>No cambia el costo (eso ya viene en los gramos y las horas). Sirve para clasificar la pieza y compararla contra tu lista de precios de venta por tamaño.</dd>
+      </dl>
+
+      <h4>✨ Extras — son de cada pieza, no de la placa</h4>
+      <dl>
+        <dt>Imanes, argollas, vela LED, empaque</dt>
+        <dd>La cantidad que lleva <b>una</b> figura. Se multiplican por las piezas de la placa.</dd>
+        <dt>Pintura a mano</dt>
+        <dd>Las horas que tú le metes. Se cobran como mano de obra a $150/h y <b>no</b> cuentan como horas de impresora.</dd>
+      </dl>
+
+      <h4>💰 Tu precio</h4>
+      <dl>
+        <dt>Por margen</dt>
+        <dd>El precio sale del costo más tu margen. Sirve para saber tu piso, no tu precio de venta.</dd>
+        <dt>Yo lo pongo</dt>
+        <dd>Escribes el precio real al que vas a vender y te dice qué margen y qué utilidad por hora te deja. <b>Es el modo para decidir si vale la pena imprimir algo.</b></dd>
+        <dt>Por tamaño</dt>
+        <dd>Usa tu lista de precios según el alto de la pieza.</dd>
+      </dl>
+
+      <h4>⚙️ Ajustes</h4>
+      <dl>
+        <dt>Consumo (kW) y precio del kWh</dt>
+        <dd>Lo que la impresora gasta de luz por hora encendida.</dd>
+        <dt>Precio de la máquina y vida útil</dt>
+        <dd>Depreciación: lo que "gastas" de impresora cada hora. No sale de tu bolsa hoy, pero es el ahorro para reponerla.</dd>
+        <dt>Margen y cómo se calcula</dt>
+        <dd><b>Sobre el costo</b>: 70% = precio 1.70× el costo. <b>Sobre la venta</b>: 70% = el margen es el 70% del precio, o sea 3.33× el costo. Son números muy distintos.</dd>
+        <dt>Precios por tamaño</dt>
+        <dd>Tu lista de venta. Es la referencia que te avisa cuando el precio por costo se queda corto.</dd>
+        <dt>Mínimo y meta ($/h)</dt>
+        <dd>Los cortes del semáforo: abajo del mínimo 🔴, entre los dos 🟡, arriba de la meta 🟢.</dd>
+      </dl>
+
+      <h4>📊 Resultados</h4>
+      <dl>
+        <dt>Costo por pieza</dt>
+        <dd>Todo lo que te cuesta producir una figura, ya repartida la placa.</dd>
+        <dt>Precio sugerido y utilidad por pieza</dt>
+        <dd>El precio del modo que elegiste, y lo que te queda libre en cada venta.</dd>
+        <dt>★ Utilidad por hora de impresora</dt>
+        <dd>El número clave: lo que te deja la máquina por cada hora encendida. Se calcula <b>utilidad por pieza × piezas ÷ horas de impresión</b>. Con él comparas productos que no se parecen en nada.</dd>
+      </dl>
+
     </div>
   </details>
 
@@ -392,7 +509,7 @@
           <input type="number" id="precioKg" value="420" min="0" step="10" inputmode="decimal" disabled></label>
       </div>
 
-      <div class="grid g2 apilar">
+      <div class="grid">
         <label class="f"><span>Multicolor / purga</span>
           <select id="colores">
             <option value="1" selected>Un solo color · sin purga</option>
@@ -400,8 +517,13 @@
             <option value="3">3 colores · +6 g</option>
             <option value="4">4 colores · +10 g</option>
           </select></label>
+      </div>
+
+      <div class="grid g2">
         <label class="f"><span>Piezas por placa</span>
           <input type="number" id="piezas" value="1" min="1" step="1" inputmode="numeric"></label>
+        <label class="f"><span>Tamaño · alto en cm</span>
+          <input type="number" id="tamano" value="8" min="0" step="0.5" inputmode="decimal"></label>
       </div>
       <p class="ayuda" id="ayudaPlaca"></p>
     </div>
@@ -411,6 +533,22 @@
   <section class="card">
     <h2><span class="ico">✨</span> Extras <span class="tag">POR PIEZA</span></h2>
     <div class="grid" id="listaExtras" style="gap:10px"></div>
+  </section>
+
+  <!-- ============ TU PRECIO ============ -->
+  <section class="card">
+    <h2><span class="ico">💰</span> Tu precio <span class="tag">POR PIEZA</span></h2>
+    <div class="segmentos" id="modoPrecio" data-modo="margen">
+      <button type="button" data-modo="margen" class="act">Por margen</button>
+      <button type="button" data-modo="manual">Yo lo pongo</button>
+      <button type="button" data-modo="tamano">Por tamaño</button>
+    </div>
+    <label class="f" id="panelManual" hidden><span>Precio al que lo vas a vender ($)</span>
+      <input type="number" id="precioManual" value="0" min="0" step="10" inputmode="decimal"></label>
+    <div id="panelTamano" hidden>
+      <div class="ref" id="refTamano"></div>
+    </div>
+    <div class="aviso-precio" id="avisoPrecio"></div>
   </section>
 
   <!-- ============ RESULTADOS ============ -->
@@ -429,7 +567,7 @@
 
     <div class="tiles">
       <div class="tile costo"><div class="t">Costo / pieza</div><div class="v" id="tCosto">—</div></div>
-      <div class="tile precio"><div class="t">Precio sugerido</div><div class="v" id="tPrecio">—</div><small id="tRedondeo"></small></div>
+      <div class="tile precio"><div class="t" id="tPrecioLabel">Precio sugerido</div><div class="v" id="tPrecio">—</div><small id="tRedondeo"></small></div>
       <div class="tile util"><div class="t">Utilidad / pieza</div><div class="v" id="tUtil">—</div></div>
     </div>
 
@@ -480,7 +618,7 @@
     <div class="v" id="barraUH">—</div>
   </div>
   <div class="lado derecha">
-    <div class="k">Precio sugerido</div>
+    <div class="k" id="barraPrecioLabel">Precio sugerido</div>
     <div class="v" id="barraPrecio">—</div>
   </div>
 </div>
@@ -518,6 +656,18 @@
   };
   var PURGA = {'1':0, '2':3, '3':6, '4':10};
 
+  var TAMANOS = [
+    {id:'mini',    nombre:'Mini',    ico:'🫧',  hasta:5,        rango:'menos de 5 cm', def:80},
+    {id:'chica',   nombre:'Chica',   ico:'🥚',  hasta:10,       rango:'de 5 a 10 cm',  def:150},
+    {id:'mediana', nombre:'Mediana', ico:'🧸',  hasta:15,       rango:'de 10 a 15 cm', def:280},
+    {id:'grande',  nombre:'Grande',  ico:'🗿',  hasta:25,       rango:'de 15 a 25 cm', def:500},
+    {id:'xl',      nombre:'XL',      ico:'🏛️', hasta:Infinity, rango:'más de 25 cm',  def:900}
+  ];
+  function tamanoDe(cm){
+    for(var i=0;i<TAMANOS.length;i++){ if(cm < TAMANOS[i].hasta) return TAMANOS[i]; }
+    return TAMANOS[TAMANOS.length-1];
+  }
+
   var EXTRAS = [
     {id:'imanes',   ico:'🧲', nombre:'Imanes',              precio:2,   unidad:'pzas',  hint:'$2 c/u',        def:2, step:1,    entero:true},
     {id:'argollas', ico:'🔑', nombre:'Argollas de llavero', precio:3,   unidad:'pzas',  hint:'$3 c/u',        def:1, step:1,    entero:true},
@@ -526,8 +676,9 @@
     {id:'empaque',  ico:'📦', nombre:'Empaque',             precio:20,  unidad:'pzas',  hint:'$20 c/u',       def:1, step:1,    entero:true}
   ];
 
-  var LS = {ajustes:'calc3d.ajustes.v1', forma:'calc3d.forma.v1', catalogo:'calc3d.catalogo.v1'};
-  var AJUSTES_DEF = {kw:0.12, precioKwh:3.5, precioMaquina:32500, vidaUtil:5000, margen:70, tipoMargen:'costo', umbral1:30, umbral2:60};
+  var LS = {ajustes:'calc3d.ajustes.v2', forma:'calc3d.forma.v2', catalogo:'calc3d.catalogo.v1'};
+  var AJUSTES_DEF = {kw:0.12, precioKwh:3.5, precioMaquina:10000, vidaUtil:5000, margen:70, tipoMargen:'costo', umbral1:30, umbral2:60, preciosTamano:{}};
+  for(var td=0;td<TAMANOS.length;td++) AJUSTES_DEF.preciosTamano[TAMANOS[td].id] = TAMANOS[td].def;
 
   function leerLS(clave, def){
     try{ var raw = localStorage.getItem(clave); return raw ? JSON.parse(raw) : def; }
@@ -558,6 +709,20 @@
     $('#listaExtras').innerHTML = html;
   })();
 
+  (function pintarTamanos(){
+    var html = '';
+    for(var i=0;i<TAMANOS.length;i++){
+      var t = TAMANOS[i];
+      html +=
+        '<div class="filaTam" id="ft_'+t.id+'">'+
+          '<div class="nom">'+t.ico+' '+t.nombre+'<small>'+t.rango+'</small></div>'+
+          '<input type="number" id="pt_'+t.id+'" value="'+t.def+'" min="0" step="10" '+
+                 'inputmode="decimal" aria-label="Precio de venta tamaño '+t.nombre+'">'+
+        '</div>';
+    }
+    $('#filasTamano').innerHTML = html;
+  })();
+
   /* ---------------- estado (leer / aplicar) ---------------- */
   function ajustesActuales(){
     return {
@@ -568,7 +733,12 @@
       margen: num('#margen', AJUSTES_DEF.margen),
       tipoMargen: $('#tipoMargen').value,
       umbral1: num('#umbral1', AJUSTES_DEF.umbral1),
-      umbral2: num('#umbral2', AJUSTES_DEF.umbral2)
+      umbral2: num('#umbral2', AJUSTES_DEF.umbral2),
+      preciosTamano: (function(){
+        var o = {};
+        for(var i=0;i<TAMANOS.length;i++) o[TAMANOS[i].id] = Math.max(0, num('#pt_'+TAMANOS[i].id, TAMANOS[i].def));
+        return o;
+      })()
     };
   }
   function formaActual(){
@@ -581,6 +751,8 @@
       horas: num('#horas',0), minutos: num('#minutos',0), gramos: num('#gramos',0),
       filamento: $('#filamento').value, precioKg: num('#precioKg',0),
       colores: $('#colores').value, piezas: Math.max(1, Math.floor(num('#piezas',1))),
+      tamano: Math.max(0, num('#tamano',0)),
+      modoPrecio: modoActual(), precioManual: Math.max(0, num('#precioManual',0)),
       extras: ex
     };
   }
@@ -591,10 +763,15 @@
       if(typeof a[campos[i]] === 'number' && isFinite(a[campos[i]])) $('#'+campos[i]).value = a[campos[i]];
     }
     if(a.tipoMargen === 'costo' || a.tipoMargen === 'venta') $('#tipoMargen').value = a.tipoMargen;
+    var pt = a.preciosTamano || {};
+    for(var j=0;j<TAMANOS.length;j++){
+      var v = pt[TAMANOS[j].id];
+      if(typeof v === 'number' && isFinite(v)) $('#pt_'+TAMANOS[j].id).value = v;
+    }
   }
   function aplicarForma(f){
     if(!f) return;
-    var campos = ['horas','minutos','gramos','piezas','precioKg'];
+    var campos = ['horas','minutos','gramos','piezas','precioKg','tamano','precioManual'];
     for(var i=0;i<campos.length;i++){
       if(typeof f[campos[i]] === 'number' && isFinite(f[campos[i]])) $('#'+campos[i]).value = f[campos[i]];
     }
@@ -606,6 +783,7 @@
       $('#chk_'+e.id).checked = !!d.on;
       if(typeof d.cant === 'number' && isFinite(d.cant)) $('#qty_'+e.id).value = d.cant;
     }
+    ponerModo(f.modoPrecio === 'manual' || f.modoPrecio === 'tamano' ? f.modoPrecio : 'margen');
     sincronizarFilamento(true);
     sincronizarExtras();
   }
@@ -620,6 +798,14 @@
       input.disabled = true;
       input.value = f.precio;
     }
+  }
+  function modoActual(){ return $('#modoPrecio').getAttribute('data-modo') || 'margen'; }
+  function ponerModo(m){
+    $('#modoPrecio').setAttribute('data-modo', m);
+    var b = $('#modoPrecio').getElementsByTagName('button');
+    for(var i=0;i<b.length;i++) b[i].classList.toggle('act', b[i].getAttribute('data-modo') === m);
+    $('#panelManual').hidden = m !== 'manual';
+    $('#panelTamano').hidden = m !== 'tamano';
   }
   function sincronizarExtras(){
     for(var i=0;i<EXTRAS.length;i++){
@@ -754,11 +940,28 @@
       ? 'Los extras y la mano de obra se capturan <b>por pieza</b>; el filamento, la energía y la depreciación son <b>de toda la placa</b> y se reparten entre las <b>'+r.piezas+' piezas</b>.'
       : 'Como imprimes <b>1 pieza por placa</b>, el costo de la placa y el de la pieza son el mismo.';
 
-    /* precio, utilidad y utilidad por hora */
-    var precio = precioConMargen(r.costoPieza, a.margen, a.tipoMargen);
+    /* precio según el modo elegido */
+    var tam = tamanoDe(r.f.tamano);
+    var modo = r.f.modoPrecio;
+    var precioMargen = precioConMargen(r.costoPieza, a.margen, a.tipoMargen);
+    var precioRef = a.preciosTamano[tam.id] || 0;
+    var precio = modo === 'manual' ? r.f.precioManual
+               : modo === 'tamano' ? precioRef
+               : precioMargen;
+
+    for(var q=0;q<TAMANOS.length;q++) $('#ft_'+TAMANOS[q].id).classList.toggle('act', TAMANOS[q].id === tam.id);
+    $('#resTamano').textContent = tam.ico + ' ' + tam.nombre;
+    $('#refTamano').innerHTML =
+      '<div class="em">'+tam.ico+'</div>'+
+      '<div class="txt"><b>'+tam.nombre+'</b><small>'+(Math.round(r.f.tamano*10)/10)+' cm · '+tam.rango+'</small></div>'+
+      '<div class="val">'+(precioRef > 0 ? money(precioRef) : 'sin precio')+'</div>';
+
     var utilPieza = precio - r.costoPieza;
     var uh = r.horas > 0 ? (utilPieza * r.piezas) / r.horas : NaN;
 
+    var etiqPrecio = modo === 'margen' ? 'Precio sugerido' : 'Tu precio';
+    $('#tPrecioLabel').textContent = etiqPrecio;
+    $('#barraPrecioLabel').textContent = etiqPrecio;
     $('#tCosto').textContent = money(r.costoPieza);
     $('#tPrecio').textContent = money(precio);
     $('#tRedondeo').textContent = precio > 0 ? 'redondeado: ' + money0(Math.ceil(precio/5)*5) : '';
@@ -778,6 +981,43 @@
     bUH.textContent = isFinite(uh) ? money(uh) : '—';
     $('#barraPrecio').textContent = money(precio);
 
+    /* aviso del precio: costo contra tu lista de venta */
+    var avi = $('#avisoPrecio'), clase = '', txt = '';
+    if(r.costoPieza <= 0){
+      txt = 'Captura la impresión para ver tu precio.';
+    }else if(modo === 'margen'){
+      txt = 'Del costo sale <b>'+money(precioMargen)+'</b> con tu margen del '+a.margen+'%. ';
+      if(precioRef <= 0){
+        txt += 'Ponle precio al tamaño <b>'+tam.nombre+'</b> en Ajustes para compararlo con lo que de veras vendes.';
+      }else if(precioMargen < precioRef*0.9){
+        clase = 'ojo';
+        txt += 'Pero tu lista para <b>'+tam.ico+' '+tam.nombre+'</b> dice '+money(precioRef)+
+               ': si lo vendes al de costo estás dejando <b>'+money(precioRef-precioMargen)+' por pieza</b> en la mesa.';
+      }else if(precioMargen > precioRef*1.1){
+        txt += 'Va <b>'+money(precioMargen-precioRef)+'</b> arriba de tu lista para <b>'+tam.nombre+'</b> ('+money(precioRef)+'). Checa que el mercado te lo pague.';
+      }else{
+        clase = 'bien';
+        txt += 'Empata con tu lista para <b>'+tam.nombre+'</b> ('+money(precioRef)+').';
+      }
+    }else{
+      var mImp = a.tipoMargen === 'venta'
+        ? (precio > 0 ? (precio - r.costoPieza)/precio*100 : NaN)
+        : (precio - r.costoPieza)/r.costoPieza*100;
+      if(precio <= 0){
+        clase = 'ojo';
+        txt = modo === 'tamano'
+          ? 'Ponle precio al tamaño <b>'+tam.nombre+'</b> en Ajustes → Precios por tamaño.'
+          : 'Escribe el precio al que lo vas a vender.';
+      }else{
+        clase = utilPieza > 0 ? 'bien' : 'ojo';
+        txt = 'A <b>'+money(precio)+'</b> te queda un margen de <b>'+(isFinite(mImp)?Math.round(mImp)+'%':'—')+'</b> '+
+              (a.tipoMargen === 'venta' ? 'sobre la venta' : 'sobre el costo')+
+              ' — <b>'+money(utilPieza)+'</b> por pieza. El piso por costo es '+money(precioMargen)+'.';
+      }
+    }
+    avi.className = 'aviso-precio' + (clase ? ' ' + clase : '');
+    avi.innerHTML = txt;
+
     /* comparativa de márgenes */
     var lista = [50,60,70,80];
     if(lista.indexOf(a.margen) === -1 && a.margen > 0) lista.push(a.margen);
@@ -789,12 +1029,21 @@
       var u = p - r.costoPieza;
       var uhm = r.horas > 0 ? (u * r.piezas) / r.horas : NaN;
       var sm = semaforo(uhm, a.umbral1, a.umbral2);
-      var esMio = m === a.margen;
+      var esMio = m === a.margen && modo === 'margen';
       hm += '<tr'+(esMio?' class="sel"':'')+'>'+
         '<td>'+m+'%'+(esMio?'<span class="mio">★</span>':'')+'</td>'+
         '<td>'+money(p)+'</td>'+
         '<td>'+money(u)+'</td>'+
         '<td><span class="nowrap"><span class="dot '+sm.clase+'"></span>'+(isFinite(uhm)?money(uhm):'—')+'</span></td>'+
+      '</tr>';
+    }
+    if(modo !== 'margen' && precio > 0){
+      var sTu = semaforo(uh, a.umbral1, a.umbral2);
+      hm += '<tr class="sel">'+
+        '<td>'+(modo === 'tamano' ? tam.nombre : 'Tu precio')+'<span class="mio">★</span></td>'+
+        '<td>'+money(precio)+'</td>'+
+        '<td>'+money(utilPieza)+'</td>'+
+        '<td><span class="nowrap"><span class="dot '+sTu.clase+'"></span>'+(isFinite(uh)?money(uh):'—')+'</span></td>'+
       '</tr>';
     }
     $('#tablaMargenes').innerHTML = hm;
@@ -803,7 +1052,7 @@
     escribirLS(LS.ajustes, a);
     escribirLS(LS.forma, r.f);
 
-    ultimo = {r:r, precio:precio, utilPieza:utilPieza, uh:uh, semaforo:s.clase};
+    ultimo = {r:r, precio:precio, precioMargen:precioMargen, utilPieza:utilPieza, uh:uh, semaforo:s.clase, tam:tam};
     return ultimo;
   }
   var ultimo = null;
@@ -833,6 +1082,7 @@
           '<span class="chip">⏱️ '+horasTexto(res.horas||0)+'</span>'+
           '<span class="chip">🧵 '+(Math.round((res.gramos||0)*10)/10)+' g</span>'+
           '<span class="chip">🧊 '+(res.piezas||1)+(res.piezas===1?' pieza':' piezas')+'</span>'+
+          (res.tamano ? '<span class="chip">📏 '+(Math.round(res.tamano*10)/10)+' cm · '+esc(res.tamanoNombre||'')+'</span>' : '')+
           '<span class="chip">'+esc(res.filamento||'')+'</span>'+
         '</div>'+
         '<div class="acc">'+
@@ -868,6 +1118,9 @@
         uh: d.uh,
         semaforo: d.semaforo,
         margen: d.r.a.margen,
+        modo: d.r.f.modoPrecio,
+        tamano: d.r.f.tamano,
+        tamanoNombre: d.tam.ico + ' ' + d.tam.nombre,
         horas: d.r.horas,
         gramos: d.r.gTotalPlaca,
         piezas: d.r.piezas,
@@ -903,6 +1156,17 @@
   }
   document.addEventListener('input', alCambiar);
   document.addEventListener('change', alCambiar);
+
+  $('#modoPrecio').addEventListener('click', function(ev){
+    var b = ev.target.closest('button[data-modo]'); if(!b) return;
+    var m = b.getAttribute('data-modo');
+    if(m === 'manual' && !(num('#precioManual',0) > 0) && ultimo && ultimo.precioMargen > 0){
+      $('#precioManual').value = Math.ceil(ultimo.precioMargen/5)*5;
+    }
+    ponerModo(m);
+    render();
+    if(m === 'manual') $('#precioManual').focus();
+  });
 
   $('#btnGuardar').addEventListener('click', guardar);
   $('#nombreProducto').addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); guardar(); } });
