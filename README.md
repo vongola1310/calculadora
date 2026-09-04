@@ -5,10 +5,20 @@ Todo vive en un solo archivo: `index.html`. Sin dependencias, sin servidor, sin 
 
 ## Cómo usarla
 
-Abre `index.html` en cualquier navegador. En el celular conviene agregarla a la pantalla de
-inicio (*Compartir → Agregar a pantalla de inicio*) para abrirla como app.
+Abre `index.html` en cualquier navegador. Los resultados se recalculan **en vivo** conforme
+escribes, no hay botón de calcular.
 
-Los resultados se recalculan **en vivo** conforme escribes, no hay botón de calcular.
+### En el teléfono
+
+Está hecha primero para celular. Desde el navegador del teléfono: *Compartir → Agregar a
+pantalla de inicio*. Trae ícono propio y abre en pantalla completa, sin barra del navegador.
+
+- Ningún campo de captura baja de 16 px, así que iOS no hace zoom al tocarlo.
+- Todos los botones y campos miden al menos 44 px de alto.
+- Los campos numéricos abren el teclado de números.
+- La barra de abajo siempre muestra la utilidad por hora con su color, respeta la zona
+  segura del teléfono y se toca para saltar al resultado y de regreso al inicio.
+- Sin scroll horizontal de 320 px en adelante, también en horizontal.
 
 ## Qué captura
 

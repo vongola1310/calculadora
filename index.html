@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0f14">
 <meta name="description" content="Calculadora de costos y precios para impresión 3D en pesos mexicanos.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Calc 3D">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="data:image/png;base64,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LKT2VgrmmzmXrDnbkwuNAmvHGhn3kxk6MeizHCEWB1t5GPmuAKqvVnhCjK02Pi5xci7MNpfDJmPNcdtu2pehdLQrOSBlh3te/b6Nfyf27m/o+WfZAyjU4nByf+pK3Uanw+FbM6ex4oSMndipC3nHUoEVUofs2dG1ukruCUclzgqrOuXa8HSLrDIy87SjZyKO2/bJLt6teL80Bcpgk29vvtwqyTT7RcUupFY4jtK/OE2RXTPl0m1z2H1/+y3vlWFxycGLw+P2f/iOo6S47col2RuyrFG6YQ8qdrq8wnFUnnTtWteeNsReuNA8cR7vjuhXWreg+fJnvO9+Zl6vn6nLtiAXj7kry93H9nVeq+zJ+MYUJX2vWMmT2YTYrFSWeV5f0vLnVfaxjxonzTPJvd0R+xi2Lm8tOyjjCNzwaQHYM7xwxL1q5v/d69hh93fdvMXmD8hNupf8ITY1S8k7Pwk05mip8+1e384e94yJuH+6IS1Hl5GrM1putT/FVtcH3nSc+UjeWRrsKEz2mADMKbEjw7aDvXWCyJzlluFTFZj46k7EAenpf7nY4/rvU7M0CXdqLdEqs1XNHo5Wf/NVr63O13jZW1fZw33RUTOEviEYM3qm4ZGl3FfD9RrR91ZqznrZQwocs1X1rWeFOF5PYWUUbRDivPmw+6amotescSmC/q01Ounxn0XOWKzYvutNwiuOhWujhb3JZL87Nc9tjhl0n0DXX4VLHDq9tGSjVampxq+VW6B/ZpNV2buOfllYxGFNUC/eZB06XuHB/5ex7cjI6YZJ801DxHttUsjHERWnmlZkKVxkvvUucfCxjciEucZJ3zWJ/PVvCr+ysbONPo90ZE9Hj/dLKUnp7N03PbjAbLGKkkVkjGrg8IhBw3V3jYhQ5OQduYT4jjemqtx1Yn9nRZm76pT783M9D4V9APmzjKO/bbx7dA/nQG/zO94MZlVssjqGPRI11kRNbH91fIomPlXbF78jUpQ4unN1+CrLPXVVnsYab0Nt18Pe2HVP8bYWf/OVrmlptrEwWLq+p1NvUhkjVYlpmuSB2gGDdUkZmuQMhb9pIJSIGAcIAl9XDiTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEAaT/AgAA///BNvC8AAAABklEQVQDAFxMTuCAyS8jAAAAAElFTkSuQmCC">
+<link rel="icon" href="data:image/png;base64,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LKT2VgrmmzmXrDnbkwuNAmvHGhn3kxk6MeizHCEWB1t5GPmuAKqvVnhCjK02Pi5xci7MNpfDJmPNcdtu2pehdLQrOSBlh3te/b6Nfyf27m/o+WfZAyjU4nByf+pK3Uanw+FbM6ex4oSMndipC3nHUoEVUofs2dG1ukruCUclzgqrOuXa8HSLrDIy87SjZyKO2/bJLt6teL80Bcpgk29vvtwqyTT7RcUupFY4jtK/OE2RXTPl0m1z2H1/+y3vlWFxycGLw+P2f/iOo6S47col2RuyrFG6YQ8qdrq8wnFUnnTtWteeNsReuNA8cR7vjuhXWreg+fJnvO9+Zl6vn6nLtiAXj7kry93H9nVeq+zJ+MYUJX2vWMmT2YTYrFSWeV5f0vLnVfaxjxonzTPJvd0R+xi2Lm8tOyjjCNzwaQHYM7xwxL1q5v/d69hh93fdvMXmD8hNupf8ITY1S8k7Pwk05mip8+1e384e94yJuH+6IS1Hl5GrM1putT/FVtcH3nSc+UjeWRrsKEz2mADMKbEjw7aDvXWCyJzlluFTFZj46k7EAenpf7nY4/rvU7M0CXdqLdEqs1XNHo5Wf/NVr63O13jZW1fZw33RUTOEviEYM3qm4ZGl3FfD9RrR91ZqznrZQwocs1X1rWeFOF5PYWUUbRDivPmw+6amotescSmC/q01Ounxn0XOWKzYvutNwiuOhWujhb3JZL87Nc9tjhl0n0DXX4VLHDq9tGSjVampxq+VW6B/ZpNV2buOfllYxGFNUC/eZB06XuHB/5ex7cjI6YZJ801DxHttUsjHERWnmlZkKVxkvvUucfCxjciEucZJ3zWJ/PVvCr+ysbONPo90ZE9Hj/dLKUnp7N03PbjAbLGKkkVkjGrg8IhBw3V3jYhQ5OQduYT4jjemqtx1Yn9nRZm76pT783M9D4V9APmzjKO/bbx7dA/nQG/zO94MZlVssjqGPRI11kRNbH91fIomPlXbF78jUpQ4unN1+CrLPXVVnsYab0Nt18Pe2HVP8bYWf/OVrmlptrEwWLq+p1NvUhkjVYlpmuSB2gGDdUkZmuQMhb9pIJSIGAcIAl9XDiTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEAaT/AgAA///BNvC8AAAABklEQVQDAFxMTuCAyS8jAAAAAElFTkSuQmCC">
 <title>Calculadora de Costos 3D</title>
 <style>
   :root{
@@ -27,10 +34,13 @@
     --sombra:0 10px 30px rgba(0,0,0,.45);
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  button,summary,input,select,label.pick{touch-action:manipulation}
+  button,summary,.pick,.segmentos button{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
   html{-webkit-text-size-adjust:100%}
   body{
     margin:0;
-    padding:0 0 92px;
+    padding:0 0 calc(96px + env(safe-area-inset-bottom));
+    -webkit-text-size-adjust:100%;
     background:
       radial-gradient(1100px 520px at 8% -8%, rgba(182,255,46,.13), transparent 60%),
       radial-gradient(900px 460px at 100% 0%, rgba(56,189,248,.12), transparent 60%),
@@ -110,7 +120,7 @@
     transition:border-color .15s, background .15s;
   }
   .extra.on{border-color:rgba(182,255,46,.55);background:rgba(182,255,46,.06)}
-  .extra .pick{display:flex;align-items:center;gap:11px;flex:1 1 auto;cursor:pointer;min-width:0}
+  .extra .pick{display:flex;align-items:center;gap:11px;flex:1 1 auto;cursor:pointer;min-width:0;min-height:44px}
   .extra input[type=checkbox]{position:absolute;opacity:0;width:0;height:0}
   .box{
     width:26px;height:26px;flex:0 0 26px;border-radius:8px;
@@ -228,7 +238,7 @@
   .btn:active{transform:scale(.97)}
   .btn.primario{background:linear-gradient(135deg,var(--lima),var(--menta));color:#08110a;border-color:transparent;box-shadow:0 6px 20px rgba(182,255,46,.24)}
   .btn.fantasma{background:transparent}
-  .btn.chico{font-size:13.5px;padding:9px 13px;border-radius:11px}
+  .btn.chico{font-size:14.5px;padding:13px 14px;border-radius:12px}
   .btn.peligro{color:#ff8e99;border-color:#43242a}
   .fila-guardar{display:flex;gap:10px;align-items:stretch}
   .fila-guardar input{flex:1 1 auto}
@@ -254,15 +264,23 @@
   /* ---------- Barra fija ---------- */
   .barra{
     position:fixed;left:0;right:0;bottom:0;z-index:40;
-    padding:10px 14px calc(10px + env(safe-area-inset-bottom));
-    background:rgba(9,13,18,.93);backdrop-filter:blur(12px);
-    border-top:1px solid var(--linea);
+    padding:11px 14px calc(11px + env(safe-area-inset-bottom));
+    background:rgba(9,13,18,.94);backdrop-filter:blur(12px);
+    border:none;border-top:1px solid var(--linea);
     display:flex;align-items:center;gap:12px;
+    width:100%;font-family:inherit;text-align:left;color:inherit;cursor:pointer;
   }
-  .barra .lado{min-width:0}
+  .barra:active{background:rgba(20,28,36,.97)}
+  .barra .lado{min-width:0;display:block}
+  .barra .k,.barra .v{display:block}
+  .barra .ir{
+    flex:0 0 auto;font-size:12px;color:var(--suave);align-self:center;
+    border:1px solid var(--linea);border-radius:9px;padding:7px 9px;line-height:1;
+  }
   .barra .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--suave);font-weight:750}
   .barra .v{font-size:20px;font-weight:850;letter-spacing:-.6px;font-variant-numeric:tabular-nums;line-height:1.15}
   .barra .derecha{margin-left:auto;text-align:right}
+  .barra .derecha + .ir{margin-left:10px}
   .barra .derecha .v{color:var(--lima)}
   #barraUH{color:var(--suave)}
   #barraUH.rojo{color:var(--rojo)}#barraUH.amarillo{color:var(--amarillo)}#barraUH.verde{color:var(--verde)}
@@ -301,7 +319,7 @@
   .filaTam:last-of-type{border-bottom:none}
   .filaTam .nom{flex:1 1 auto;min-width:0;font-size:14.5px;font-weight:700}
   .filaTam .nom small{display:block;font-size:11.5px;color:var(--suave);font-weight:600}
-  .filaTam input{width:106px;flex:0 0 106px;padding:10px;text-align:right;font-size:15.5px}
+  .filaTam input{width:110px;flex:0 0 110px;padding:12px 10px;text-align:right;font-size:16.5px}
   .filaTam.act .nom{color:var(--lima)}
 
   /* ---------- Promociones ---------- */
@@ -360,6 +378,10 @@
     .fila-guardar .btn{width:100%}
     th,td{padding:10px 6px;font-size:14.5px}
     th{font-size:10.5px;letter-spacing:.3px}
+    .wrap{padding:14px 13px 8px}
+    .card{padding:14px;margin-bottom:13px}
+    .ajustes-body{padding:14px}
+    .btn.chico{width:100%}
   }
   @media (max-width:400px){
     th,td{padding:9px 4px;font-size:13.5px}
@@ -440,82 +462,6 @@
       </div>
 
       <button class="btn fantasma chico" id="btnResetAjustes" type="button">↺ Restablecer ajustes</button>
-    </div>
-  </details>
-
-  <!-- ============ MANUAL ============ -->
-  <details class="ajustes" id="manual">
-    <summary>📖 Qué hace cada campo <span class="flecha">▼</span></summary>
-    <div class="ajustes-body man">
-
-      <h4>🖨️ Datos de impresión — son de la placa completa</h4>
-      <dl>
-        <dt>Horas y minutos</dt>
-        <dd>Lo que tarda la impresión completa, tal cual te lo dice el slicer. De aquí salen la luz, la depreciación y la <b>utilidad por hora</b>.</dd>
-        <dt>Filamento (g)</dt>
-        <dd>Los gramos que gasta toda la placa, también del slicer.</dd>
-        <dt>Tipo de filamento</dt>
-        <dd>Fija el precio por kilo. Con <b>Otro</b> lo capturas a mano.</dd>
-        <dt>Multicolor / purga</dt>
-        <dd>Gramos que se tiran en los cambios de color. Entre más colores, más desperdicio.</dd>
-        <dt>Piezas por placa</dt>
-        <dd>Cuántas figuras salen en una sola impresión. Reparte el costo de la placa y multiplica lo que vendes sin ocupar más horas de máquina: <b>es la palanca más fuerte que tienes</b>.</dd>
-        <dt>Tamaño · alto en cm</dt>
-        <dd>No cambia el costo (eso ya viene en los gramos y las horas). Sirve para clasificar la pieza y compararla contra tu lista de precios de venta por tamaño.</dd>
-      </dl>
-
-      <h4>✨ Extras — son de cada pieza, no de la placa</h4>
-      <dl>
-        <dt>Imanes, argollas, vela LED, empaque</dt>
-        <dd>La cantidad que lleva <b>una</b> figura. Se multiplican por las piezas de la placa.</dd>
-        <dt>Pintura a mano</dt>
-        <dd>Las horas que tú le metes. Se cobran como mano de obra a $150/h y <b>no</b> cuentan como horas de impresora.</dd>
-      </dl>
-
-      <h4>💰 Tu precio</h4>
-      <dl>
-        <dt>Por margen</dt>
-        <dd>El precio sale del costo más tu margen. Sirve para saber tu piso, no tu precio de venta.</dd>
-        <dt>Yo lo pongo</dt>
-        <dd>Escribes el precio real al que vas a vender y te dice qué margen y qué utilidad por hora te deja. <b>Es el modo para decidir si vale la pena imprimir algo.</b></dd>
-        <dt>Por tamaño</dt>
-        <dd>Usa tu lista de precios según el alto de la pieza.</dd>
-      </dl>
-
-      <h4>⚙️ Ajustes</h4>
-      <dl>
-        <dt>Consumo (kW) y precio del kWh</dt>
-        <dd>Lo que la impresora gasta de luz por hora encendida.</dd>
-        <dt>Precio de la máquina y vida útil</dt>
-        <dd>Depreciación: lo que "gastas" de impresora cada hora. No sale de tu bolsa hoy, pero es el ahorro para reponerla.</dd>
-        <dt>Margen y cómo se calcula</dt>
-        <dd><b>Sobre el costo</b>: 70% = precio 1.70× el costo. <b>Sobre la venta</b>: 70% = el margen es el 70% del precio, o sea 3.33× el costo. Son números muy distintos.</dd>
-        <dt>Precios por tamaño</dt>
-        <dd>Tu lista de venta. Es la referencia que te avisa cuando el precio por costo se queda corto.</dd>
-        <dt>Mínimo y meta ($/h)</dt>
-        <dd>Los cortes del semáforo: abajo del mínimo 🔴, entre los dos 🟡, arriba de la meta 🟢.</dd>
-      </dl>
-
-      <h4>🎉 Promociones</h4>
-      <dl>
-        <dt>Piezas y precio del paquete</dt>
-        <dd>El 2 × $100 o el 10 × $100 tal cual lo vas a anunciar. La calculadora reparte el precio entre las piezas y vuelve a sacar la <b>utilidad por hora</b>, que es la que dice si conviene.</dd>
-        <dt>Por separado serían</dt>
-        <dd>Lo que cobrarías por esas mismas piezas sueltas. Si el paquete queda arriba, no es promoción.</dd>
-        <dt>Precio mínimo y precio meta</dt>
-        <dd>Lo menos que puedes cobrar por cada tamaño de paquete sin bajar del mínimo del semáforo (🟡) y lo que necesitas para llegar a la meta (🟢). Es tu tarifario de promos.</dd>
-      </dl>
-
-      <h4>📊 Resultados</h4>
-      <dl>
-        <dt>Costo por pieza</dt>
-        <dd>Todo lo que te cuesta producir una figura, ya repartida la placa.</dd>
-        <dt>Precio sugerido y utilidad por pieza</dt>
-        <dd>El precio del modo que elegiste, y lo que te queda libre en cada venta.</dd>
-        <dt>★ Utilidad por hora de impresora</dt>
-        <dd>El número clave: lo que te deja la máquina por cada hora encendida. Se calcula <b>utilidad por pieza × piezas ÷ horas de impresión</b>. Con él comparas productos que no se parecen en nada.</dd>
-      </dl>
-
     </div>
   </details>
 
@@ -670,6 +616,82 @@
     <div id="catalogo"></div>
   </section>
 
+  <!-- ============ MANUAL ============ -->
+  <details class="ajustes" id="manual">
+    <summary>📖 Qué hace cada campo <span class="flecha">▼</span></summary>
+    <div class="ajustes-body man">
+
+      <h4>🖨️ Datos de impresión — son de la placa completa</h4>
+      <dl>
+        <dt>Horas y minutos</dt>
+        <dd>Lo que tarda la impresión completa, tal cual te lo dice el slicer. De aquí salen la luz, la depreciación y la <b>utilidad por hora</b>.</dd>
+        <dt>Filamento (g)</dt>
+        <dd>Los gramos que gasta toda la placa, también del slicer.</dd>
+        <dt>Tipo de filamento</dt>
+        <dd>Fija el precio por kilo. Con <b>Otro</b> lo capturas a mano.</dd>
+        <dt>Multicolor / purga</dt>
+        <dd>Gramos que se tiran en los cambios de color. Entre más colores, más desperdicio.</dd>
+        <dt>Piezas por placa</dt>
+        <dd>Cuántas figuras salen en una sola impresión. Reparte el costo de la placa y multiplica lo que vendes sin ocupar más horas de máquina: <b>es la palanca más fuerte que tienes</b>.</dd>
+        <dt>Tamaño · alto en cm</dt>
+        <dd>No cambia el costo (eso ya viene en los gramos y las horas). Sirve para clasificar la pieza y compararla contra tu lista de precios de venta por tamaño.</dd>
+      </dl>
+
+      <h4>✨ Extras — son de cada pieza, no de la placa</h4>
+      <dl>
+        <dt>Imanes, argollas, vela LED, empaque</dt>
+        <dd>La cantidad que lleva <b>una</b> figura. Se multiplican por las piezas de la placa.</dd>
+        <dt>Pintura a mano</dt>
+        <dd>Las horas que tú le metes. Se cobran como mano de obra a $150/h y <b>no</b> cuentan como horas de impresora.</dd>
+      </dl>
+
+      <h4>💰 Tu precio</h4>
+      <dl>
+        <dt>Por margen</dt>
+        <dd>El precio sale del costo más tu margen. Sirve para saber tu piso, no tu precio de venta.</dd>
+        <dt>Yo lo pongo</dt>
+        <dd>Escribes el precio real al que vas a vender y te dice qué margen y qué utilidad por hora te deja. <b>Es el modo para decidir si vale la pena imprimir algo.</b></dd>
+        <dt>Por tamaño</dt>
+        <dd>Usa tu lista de precios según el alto de la pieza.</dd>
+      </dl>
+
+      <h4>⚙️ Ajustes</h4>
+      <dl>
+        <dt>Consumo (kW) y precio del kWh</dt>
+        <dd>Lo que la impresora gasta de luz por hora encendida.</dd>
+        <dt>Precio de la máquina y vida útil</dt>
+        <dd>Depreciación: lo que "gastas" de impresora cada hora. No sale de tu bolsa hoy, pero es el ahorro para reponerla.</dd>
+        <dt>Margen y cómo se calcula</dt>
+        <dd><b>Sobre el costo</b>: 70% = precio 1.70× el costo. <b>Sobre la venta</b>: 70% = el margen es el 70% del precio, o sea 3.33× el costo. Son números muy distintos.</dd>
+        <dt>Precios por tamaño</dt>
+        <dd>Tu lista de venta. Es la referencia que te avisa cuando el precio por costo se queda corto.</dd>
+        <dt>Mínimo y meta ($/h)</dt>
+        <dd>Los cortes del semáforo: abajo del mínimo 🔴, entre los dos 🟡, arriba de la meta 🟢.</dd>
+      </dl>
+
+      <h4>🎉 Promociones</h4>
+      <dl>
+        <dt>Piezas y precio del paquete</dt>
+        <dd>El 2 × $100 o el 10 × $100 tal cual lo vas a anunciar. La calculadora reparte el precio entre las piezas y vuelve a sacar la <b>utilidad por hora</b>, que es la que dice si conviene.</dd>
+        <dt>Por separado serían</dt>
+        <dd>Lo que cobrarías por esas mismas piezas sueltas. Si el paquete queda arriba, no es promoción.</dd>
+        <dt>Precio mínimo y precio meta</dt>
+        <dd>Lo menos que puedes cobrar por cada tamaño de paquete sin bajar del mínimo del semáforo (🟡) y lo que necesitas para llegar a la meta (🟢). Es tu tarifario de promos.</dd>
+      </dl>
+
+      <h4>📊 Resultados</h4>
+      <dl>
+        <dt>Costo por pieza</dt>
+        <dd>Todo lo que te cuesta producir una figura, ya repartida la placa.</dd>
+        <dt>Precio sugerido y utilidad por pieza</dt>
+        <dd>El precio del modo que elegiste, y lo que te queda libre en cada venta.</dd>
+        <dt>★ Utilidad por hora de impresora</dt>
+        <dd>El número clave: lo que te deja la máquina por cada hora encendida. Se calcula <b>utilidad por pieza × piezas ÷ horas de impresión</b>. Con él comparas productos que no se parecen en nada.</dd>
+      </dl>
+
+    </div>
+  </details>
+
   <footer>
     Hecho para tu negocio de figuras 3D 🧡 Los datos se guardan solo en este dispositivo.<br>
     <span id="notaEnergia"></span>
@@ -677,16 +699,17 @@
 </div>
 
 <!-- ============ BARRA FIJA ============ -->
-<div class="barra">
-  <div class="lado">
-    <div class="k">★ Utilidad / hora</div>
-    <div class="v" id="barraUH">—</div>
-  </div>
-  <div class="lado derecha">
-    <div class="k" id="barraPrecioLabel">Precio sugerido</div>
-    <div class="v" id="barraPrecio">—</div>
-  </div>
-</div>
+<button class="barra" id="barra" type="button" aria-label="Ir a los resultados">
+  <span class="lado">
+    <span class="k">★ Utilidad / hora</span>
+    <span class="v" id="barraUH">—</span>
+  </span>
+  <span class="lado derecha">
+    <span class="k" id="barraPrecioLabel">Precio sugerido</span>
+    <span class="v" id="barraPrecio">—</span>
+  </span>
+  <span class="ir" id="barraIr" aria-hidden="true">▲</span>
+</button>
 
 <script>
 (function(){
@@ -1282,6 +1305,22 @@
   }
   document.addEventListener('input', alCambiar);
   document.addEventListener('change', alCambiar);
+
+  (function barraNavegable(){
+    var barra = $('#barra'), ir = $('#barraIr');
+    function heroVisible(){
+      var r = $('#hero').getBoundingClientRect();
+      return r.top >= 0 && r.bottom <= window.innerHeight;
+    }
+    barra.addEventListener('click', function(){
+      if(heroVisible()) window.scrollTo({top:0, behavior:'smooth'});
+      else $('#hero').scrollIntoView({behavior:'smooth', block:'center'});
+    });
+    function pintarFlecha(){ ir.textContent = heroVisible() ? '▲' : '★'; }
+    window.addEventListener('scroll', pintarFlecha, {passive:true});
+    window.addEventListener('resize', pintarFlecha);
+    pintarFlecha();
+  })();
 
   $('#modoPrecio').addEventListener('click', function(ev){
     var b = ev.target.closest('button[data-modo]'); if(!b) return;
