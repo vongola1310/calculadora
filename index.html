@@ -304,6 +304,34 @@
   .filaTam input{width:106px;flex:0 0 106px;padding:10px;text-align:right;font-size:15.5px}
   .filaTam.act .nom{color:var(--lima)}
 
+  /* ---------- Promociones ---------- */
+  .promoBox{
+    border-radius:17px;padding:15px;margin:14px 0 0;
+    border:2px solid var(--c,#35455a);
+    background:linear-gradient(160deg,var(--tint,rgba(255,255,255,.05)),rgba(10,16,23,.92) 70%);
+  }
+  .promoBox.rojo{--c:var(--rojo);--tint:rgba(255,77,94,.13)}
+  .promoBox.amarillo{--c:var(--amarillo);--tint:rgba(255,194,51,.13)}
+  .promoBox.verde{--c:var(--verde);--tint:rgba(182,255,46,.13)}
+  .promoBox .lema{font-size:13px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--suave)}
+  .promoBox .cifra{
+    display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;margin:6px 0 0;
+    font-size:clamp(32px,10vw,44px);font-weight:850;line-height:1;letter-spacing:-1.4px;
+    color:var(--c,var(--texto));font-variant-numeric:tabular-nums;
+  }
+  .promoBox .cifra em{font-size:16px;font-weight:750;font-style:normal;letter-spacing:0;color:var(--suave)}
+  .promoBox .ver{
+    display:inline-flex;align-items:center;gap:7px;margin-top:11px;line-height:1.3;
+    padding:8px 13px;border-radius:999px;font-size:14px;font-weight:800;
+    background:var(--tint,rgba(255,255,255,.07));color:var(--c,var(--texto));border:1px solid var(--c,#35455a);
+  }
+  .datos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:13px}
+  .datos > div{background:rgba(0,0,0,.3);border-radius:12px;padding:9px 11px}
+  .datos .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--suave);font-weight:750}
+  .datos .v{font-size:16.5px;font-weight:850;margin-top:2px;font-variant-numeric:tabular-nums}
+  .datos .v.mal{color:var(--rojo)}
+  .datos .v.bien{color:var(--lima)}
+
   /* ---------- Manual ---------- */
   .man h4{margin:16px 0 8px;font-size:14.5px;font-weight:800;color:var(--lima);letter-spacing:.2px}
   .man h4:first-child{margin-top:0}
@@ -468,6 +496,16 @@
         <dd>Los cortes del semáforo: abajo del mínimo 🔴, entre los dos 🟡, arriba de la meta 🟢.</dd>
       </dl>
 
+      <h4>🎉 Promociones</h4>
+      <dl>
+        <dt>Piezas y precio del paquete</dt>
+        <dd>El 2 × $100 o el 10 × $100 tal cual lo vas a anunciar. La calculadora reparte el precio entre las piezas y vuelve a sacar la <b>utilidad por hora</b>, que es la que dice si conviene.</dd>
+        <dt>Por separado serían</dt>
+        <dd>Lo que cobrarías por esas mismas piezas sueltas. Si el paquete queda arriba, no es promoción.</dd>
+        <dt>Precio mínimo y precio meta</dt>
+        <dd>Lo menos que puedes cobrar por cada tamaño de paquete sin bajar del mínimo del semáforo (🟡) y lo que necesitas para llegar a la meta (🟢). Es tu tarifario de promos.</dd>
+      </dl>
+
       <h4>📊 Resultados</h4>
       <dl>
         <dt>Costo por pieza</dt>
@@ -593,6 +631,33 @@
       <p class="ayuda">La fila resaltada con <b>★</b> es la del margen que tienes en Ajustes.</p>
     </section>
   </div>
+
+  <!-- ============ PROMOCIONES ============ -->
+  <section class="card">
+    <h2><span class="ico">🎉</span> Promociones</h2>
+    <div class="grid g2">
+      <label class="f"><span>Piezas del paquete</span>
+        <input type="number" id="promoPiezas" value="2" min="1" step="1" inputmode="numeric"></label>
+      <label class="f"><span>Precio del paquete ($)</span>
+        <input type="number" id="promoPrecio" value="100" min="0" step="10" inputmode="decimal"></label>
+    </div>
+
+    <div class="promoBox neutro" id="promoBox">
+      <div class="lema" id="promoLema">2 × $100</div>
+      <div class="cifra"><span id="promoUH">—</span><em>/ hora de impresora</em></div>
+      <div class="ver" id="promoVeredicto">⏳ Captura la impresión</div>
+      <div class="datos" id="promoDatos"></div>
+    </div>
+    <p class="ayuda" id="notaPromo"></p>
+
+    <div class="tabla-wrap" style="margin-top:16px">
+      <table id="tablaPromos">
+        <thead><tr><th>Promo</th><th>Precio mínimo</th><th>Precio meta</th></tr></thead>
+        <tbody id="cuerpoPromos"></tbody>
+      </table>
+    </div>
+    <p class="ayuda" id="ayudaPromos"></p>
+  </section>
 
   <!-- ============ CATÁLOGO ============ -->
   <section class="card">
@@ -753,6 +818,7 @@
       colores: $('#colores').value, piezas: Math.max(1, Math.floor(num('#piezas',1))),
       tamano: Math.max(0, num('#tamano',0)),
       modoPrecio: modoActual(), precioManual: Math.max(0, num('#precioManual',0)),
+      promoPiezas: Math.max(1, Math.floor(num('#promoPiezas',1))), promoPrecio: Math.max(0, num('#promoPrecio',0)),
       extras: ex
     };
   }
@@ -771,7 +837,7 @@
   }
   function aplicarForma(f){
     if(!f) return;
-    var campos = ['horas','minutos','gramos','piezas','precioKg','tamano','precioManual'];
+    var campos = ['horas','minutos','gramos','piezas','precioKg','tamano','precioManual','promoPiezas','promoPrecio'];
     for(var i=0;i<campos.length;i++){
       if(typeof f[campos[i]] === 'number' && isFinite(f[campos[i]])) $('#'+campos[i]).value = f[campos[i]];
     }
@@ -1047,6 +1113,66 @@
       '</tr>';
     }
     $('#tablaMargenes').innerHTML = hm;
+
+    /* ---- promociones ---- */
+    var horasPieza = r.horas / r.piezas;
+    var nP = r.f.promoPiezas, pP = r.f.promoPrecio;
+    var costoPaquete = r.costoPieza * nP;
+    var utilPaquete = pP - costoPaquete;
+    var horasPaquete = horasPieza * nP;
+    var uhP = horasPaquete > 0 ? utilPaquete / horasPaquete : NaN;
+    var porPieza = nP > 0 ? pP / nP : 0;
+    var margenP = costoPaquete > 0 ? (utilPaquete / costoPaquete) * 100 : NaN;
+    var porSeparado = precio * nP;
+
+    var sP = semaforo(uhP, a.umbral1, a.umbral2);
+    var vered = sP.emoji + ' ' + sP.texto;
+    if(isFinite(uhP)){
+      if(utilPaquete < 0){ sP = {clase:'rojo'}; vered = '🔴 Pierdes ' + money(-utilPaquete) + ' en cada paquete'; }
+      else if(uhP < a.umbral1) vered = '🔴 No conviene: mejor véndelas por separado';
+      else if(uhP <= a.umbral2) vered = '🟡 Sí sale, pero apenas';
+      else vered = '🟢 Sí conviene, es buena promo';
+    }
+    $('#promoLema').textContent = nP + ' × ' + money0(pP);
+    $('#promoBox').className = 'promoBox ' + sP.clase;
+    $('#promoUH').textContent = isFinite(uhP) ? money(uhP) : '—';
+    $('#promoVeredicto').textContent = vered;
+    $('#promoDatos').innerHTML =
+      '<div><div class="k">Cada pieza en</div><div class="v">'+money(porPieza)+'</div></div>'+
+      '<div><div class="k">Utilidad del paquete</div><div class="v '+(utilPaquete<0?'mal':'bien')+'">'+money(utilPaquete)+'</div></div>'+
+      '<div><div class="k">Margen s/ costo</div><div class="v">'+(isFinite(margenP)?Math.round(margenP)+'%':'—')+'</div></div>'+
+      '<div><div class="k">Por separado</div><div class="v">'+money(porSeparado)+'</div></div>';
+
+    var nota;
+    if(modo === 'margen'){
+      nota = 'Lo estás comparando contra el precio por costo (<b>'+money(precio)+'</b> por pieza), que es tu piso, no lo que vendes. '+
+             'Pon tu precio real allá arriba en <b>Tu precio → Yo lo pongo</b> para que la comparación sirva.';
+    }else if(porSeparado <= 0){
+      nota = 'Ponle precio a la pieza allá arriba para poder comparar el paquete contra la venta suelta.';
+    }else if(pP > porSeparado){
+      nota = 'Este paquete sale <b>'+money(pP - porSeparado)+' más caro</b> que vender las '+nP+' piezas por separado ('+money(porSeparado)+'). Así no es promoción.';
+    }else{
+      nota = 'Estás regalando <b>'+money(porSeparado - pP)+'</b> ('+Math.round((1 - pP/porSeparado)*100)+'%) contra vender las '+nP+' piezas sueltas.';
+    }
+    $('#notaPromo').innerHTML = nota;
+
+    var cantidades = [2,3,5,10];
+    if(cantidades.indexOf(nP) === -1) cantidades.push(nP);
+    cantidades.sort(function(x,y){ return x-y; });
+    var hp = '';
+    for(var z=0;z<cantidades.length;z++){
+      var n = cantidades[z];
+      var minimo = n * (r.costoPieza + a.umbral1 * horasPieza);
+      var meta   = n * (r.costoPieza + a.umbral2 * horasPieza);
+      hp += '<tr'+(n === nP ? ' class="sel"' : '')+'>'+
+        '<td>'+n+' × '+(n === nP ? '<span class="mio">★</span>' : '')+'</td>'+
+        '<td><span class="nowrap"><span class="dot amarillo"></span>'+money0(Math.ceil(minimo/5)*5)+'</span></td>'+
+        '<td><span class="nowrap"><span class="dot verde"></span>'+money0(Math.ceil(meta/5)*5)+'</span></td>'+
+      '</tr>';
+    }
+    $('#cuerpoPromos').innerHTML = hp;
+    $('#ayudaPromos').innerHTML = 'Lo mínimo que puedes cobrar por paquete para no bajar de <b>'+money0(a.umbral1)+
+      '/hora</b> (🟡) y para llegar a <b>'+money0(a.umbral2)+'/hora</b> (🟢), con el costo y el tiempo de esta pieza.';
 
     /* guardar estado para la próxima visita */
     escribirLS(LS.ajustes, a);

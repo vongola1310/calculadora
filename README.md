@@ -17,6 +17,7 @@ Los resultados se recalculan **en vivo** conforme escribes, no hay botón de cal
 | Impresión (por placa) | horas y minutos, gramos de filamento, tipo de filamento, purga multicolor, piezas por placa, tamaño en cm |
 | Extras (por pieza) | imanes $2, argollas $3, vela LED $25, pintura a mano $150/h, empaque $20 |
 | Tu precio | por margen, precio manual, o precio de lista por tamaño |
+| Promociones | piezas del paquete y precio del paquete |
 | Ajustes | energía (kW × $/kWh), depreciación (precio de máquina ÷ vida útil), margen, precios por tamaño, umbrales del semáforo |
 
 La app trae un manual desplegable (**📖 Qué hace cada campo**) con la explicación breve de
@@ -75,6 +76,30 @@ cuando te estás quedando corto.
 El alto en cm **no cambia el costo** (eso ya está en los gramos y las horas): clasifica la pieza
 en Mini (<5 cm), Chica (5–10), Mediana (10–15), Grande (15–25) o XL (>25) para compararla contra
 tu lista de precios de venta. Los precios de lista se editan en Ajustes.
+
+## Promociones
+
+Captura el paquete tal cual lo vas a anunciar — `2 × $100`, `10 × $100` — y la calculadora
+reparte el precio entre las piezas y vuelve a sacar la **utilidad por hora**, con el mismo
+semáforo. Es la prueba de si una promo que suena bien de verdad conviene.
+
+```
+cada pieza      = precio del paquete ÷ piezas
+utilidad        = precio del paquete − (costo por pieza × piezas)
+horas           = (horas de la placa ÷ piezas por placa) × piezas del paquete
+utilidad/hora   = utilidad ÷ horas
+```
+
+También compara el paquete contra vender esas mismas piezas sueltas, y arma un tarifario:
+el **precio mínimo** de cada tamaño de paquete para no bajar del mínimo del semáforo, y el
+**precio meta** para llegar a la meta. La fórmula del tarifario es
+
+```
+precio mínimo del paquete = piezas × (costo por pieza + objetivo $/h × horas por pieza)
+```
+
+La comparación contra la venta suelta solo tiene sentido con un precio real capturado
+(modo *Yo lo pongo* o *Por tamaño*); en modo *Por margen* la app lo avisa.
 
 ## Catálogo
 
